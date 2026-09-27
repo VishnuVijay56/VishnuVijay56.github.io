@@ -1,0 +1,28 @@
+---
+import { withBase } from '../lib/paths';
+
+type Media = {
+  type: 'image' | 'video' | 'youtube';
+  src: string;
+  alt?: string;
+  poster?: string;
+  caption?: string;
+  loop?: boolean;
+};
+const { media, eager = false, previewOnly = false } = Astro.props as { media: Media; eager?: boolean; previewOnly?: boolean };
+const src = media.src.startsWith('/') ? withBase(media.src) : media.src;
+const poster = media.poster?.startsWith('/') ? withBase(media.poster) : media.poster;
+const youtubeId = media.type === 'youtube' ? (() => {
+  try {
+    const url = new URL(media.src);
+    return url.hostname === 'youtu.be' ? url.pathname.slice(1) : url.searchParams.get('v');
+  } catch { return null; }
+})() : null;
+---
+<figure class="project-media">
+  {previewOnly && media.type !== 'image' && (poster ? <img src={poster} alt={media.alt || 'Project media preview'} loading={eager ? 'eager' : 'lazy'} decoding="async" /> : <div class="project-media__video-preview">Video available on project page</div>)}
+  {media.type === 'image' && <img src={src} alt={media.alt || ''} loading={eager ? 'eager' : 'lazy'} decoding="async" />}
+  {!previewOnly && media.type === 'video' && <video controls={!media.loop} autoplay={media.loop} muted={media.loop} loop={media.loop} playsinline preload="none" poster={poster} aria-label={media.alt || 'Project video'}><source src={src} />Your browser does not support this video.</video>}
+  {!previewOnly && media.type === 'youtube' && youtubeId && <iframe src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(youtubeId)}`} title={media.alt || 'Project video'} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>}
+  {media.caption && <figcaption>{media.caption}</figcaption>}
+</figure>

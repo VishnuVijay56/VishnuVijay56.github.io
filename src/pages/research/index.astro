@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { siteSettings } from '../../data/site';
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Research" description="Research projects in control, robotics, autonomy, and resilient autonomous systems by Vishnu Vijay." noindex={!siteSettings.showResearchDetails}>
+  <div class="container page-intro"><p class="eyebrow">Research</p><h1>Research</h1><p>Learning-enabled methods for safe and resilient autonomous systems, from modeling and analysis to robotic demonstrations.</p><p class="placeholder-note">The tethered aerial systems entry is an example awaiting project details.</p></div>
+  <section class="container research-list" aria-label="Research projects"><div class="projects-stack">{projects.map((project, index) => <ProjectCard project={project} index={index} />)}</div></section>
+</BaseLayout>

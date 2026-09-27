@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# Local notes and draft assets. Files here never enter the GitHub Pages build.
+/.local/
+# Guard against accidentally adding local guidance at the repository root.
+/AGENTS.md
+/SETUP.md

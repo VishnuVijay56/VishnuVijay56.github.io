@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { researchVideos } from '../data/videos';
+import '../styles/videos.css';
+---
+
+<BaseLayout title="Research Videos" description="Thesis presentation and research paper videos by Vishnu Vijay.">
+  <div class="container page-intro">
+    <p class="eyebrow">Research media</p>
+    <h1>Research Videos</h1>
+    <p>Presentations and supplemental material for my research.</p>
+  </div>
+  <div class="container videos-list">
+    {researchVideos.map((video, index) => (
+      <section class="video-entry" aria-labelledby={`video-${video.id}`}>
+        <div class="video-entry__text">
+          <p class="eyebrow">{String(index + 1).padStart(2, '0')} / {video.label}</p>
+          <h2 id={`video-${video.id}`}>{video.title}</h2>
+          <p>{video.description}</p>
+          <a class="text-link" href={`https://youtu.be/${video.id}`} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="video-entry__embed">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+            title={video.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

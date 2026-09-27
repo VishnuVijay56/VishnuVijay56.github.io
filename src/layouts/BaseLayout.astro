@@ -1,0 +1,62 @@
+---
+import { personal } from '../data/personal';
+import { externalLinks } from '../data/links';
+import { siteSettings } from '../data/site';
+import { withBase } from '../lib/paths';
+import '../styles/global.css';
+import '../styles/publications.css';
+import 'katex/dist/katex.min.css';
+
+const { title, description = personal.seoDescription, noindex = false } = Astro.props as { title?: string; description?: string; noindex?: boolean };
+const pageTitle = title ? `${title} | ${personal.name}` : `${personal.name} | Research`;
+const current = Astro.url.pathname;
+const nav = [
+  { label: 'Home', href: '/' },
+  ...(siteSettings.showResearchDetails ? [{ label: 'Research', href: '/research/' }] : []),
+  { label: 'Publications', href: '/publications/' },
+  { label: 'Videos', href: '/videos/' },
+  { label: 'CV', href: '/cv/' },
+];
+const isCurrent = (href: string) => href === '/' ? current === withBase('/') : current.startsWith(withBase(href));
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#f8f8f5" />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={new URL(withBase(personal.headshot), Astro.site).href} />
+    <meta name="twitter:card" content="summary" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href={withBase('/')}>{personal.name}</a>
+        <nav class="desktop-nav" aria-label="Main navigation">{nav.map(item => <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
+        <details class="mobile-menu">
+          <summary>Menu <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile navigation">{nav.map(item => <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
+        </details>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div><p class="footer-name">{personal.name}</p><p>{personal.institution}</p></div>
+        <nav aria-label="External links" class="footer-links">{externalLinks.map(link => link.available ? <a href={link.href} target={link.label === 'Email' ? undefined : '_blank'} rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}>{link.label}</a> : <span title="Add this link in src/data/links.ts">{link.label} <small>(add link)</small></span>)}</nav>
+      </div>
+      <div class="container footer-bottom"><span>© {new Date().getFullYear()} {personal.name}</span><span>Site source hosted on <a href="https://github.com/VishnuVijay56/VishnuVijay56.github.io">GitHub</a></span></div>
+    </footer>
+  </body>
+</html>

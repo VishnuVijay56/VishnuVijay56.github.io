@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+---
+<BaseLayout title="CV" description="Curriculum vitae of Vishnu Vijay, PhD student at Purdue University.">
+  <div class="container page-intro"><p class="eyebrow">Curriculum vitae</p><h1>CV</h1><p>A PDF copy of my curriculum vitae.</p><a class="button button-primary" href={withBase('/files/cv.pdf')} download>Download CV <span aria-hidden="true">↓</span></a><p>CV last updated <time datetime="2026-09-26">September 26, 2026</time>.</p></div>
+  <section class="container cv-preview" aria-label="CV preview"><object data={withBase('/files/cv.pdf')} type="application/pdf" aria-label="CV PDF preview"><p>PDF preview unavailable. <a href={withBase('/files/cv.pdf')}>Download the CV</a>.</p></object></section>
+</BaseLayout>

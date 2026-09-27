@@ -1,0 +1,33 @@
+.publication-abstract {
+  margin-top: 0.9rem;
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.72;
+}
+
+.publication-abstract summary {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.publication-abstract summary:hover,
+.publication-abstract[open] summary {
+  text-decoration-color: currentColor;
+}
+
+.publication-abstract summary:focus-visible {
+  outline: 3px solid #377d85;
+  outline-offset: 4px;
+}
+
+.publication-abstract p {
+  margin: 0.65rem 0 0;
+}

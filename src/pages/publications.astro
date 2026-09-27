@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationEntry from '../components/PublicationEntry.astro';
+import { publications, publicationCategories } from '../data/publications';
+---
+<BaseLayout title="Publications" description="Academic publications, thesis work, and manuscripts by Vishnu Vijay.">
+  <div class="container page-intro"><p class="eyebrow">Publications</p><h1>Publications</h1><p>Journal articles, conference papers, thesis work, and manuscripts.</p></div>
+  <div class="container bibliography">{publicationCategories.map(category => {
+    const entries = publications.filter(publication => publication.category === category).sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+    return entries.length > 0 && <section class="bibliography-section" aria-label={category}><h2>{category}</h2><div class="publication-list">{entries.map(publication => <PublicationEntry publication={publication} />)}</div></section>;
+  })}</div>
+</BaseLayout>

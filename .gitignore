@@ -2,8 +2,9 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+*.code-workspace
 
-# Local notes and draft assets. Files here never enter the GitHub Pages build.
+# Local notes and draft assets. Files here never enter the pages build.
 /.local/
 # Guard against accidentally adding local guidance at the repository root.
 /AGENTS.md

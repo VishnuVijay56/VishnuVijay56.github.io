@@ -1,7 +1,7 @@
 ---
 title: Resilient Multi-Robot Integrity Monitoring
 summary: Distributed methods for detecting faults and malicious information in networked autonomous systems using inter-robot measurements.
-order: 2
+order: 1
 tags: [Multi-Robot Systems, Resilient Control, Fault Detection]
 relatedPublications: [vijay-2025-multi-robot-integrity, vijay-2025-ms-thesis]
 ---

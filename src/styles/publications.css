@@ -31,3 +31,7 @@
 .publication-abstract p {
   margin: 0.65rem 0 0;
 }
+
+.publication-abstract p + p {
+  margin-top: 1rem;
+}

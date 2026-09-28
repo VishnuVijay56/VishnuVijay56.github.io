@@ -4,9 +4,8 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  // This repository is the special username.github.io user site, so base stays '/'.
-  // Change site when you add a custom domain; see README.md.
-  site: 'https://VishnuVijay56.github.io',
+  // The custom domain serves this site from its root, so no base path is needed.
+  site: 'https://vishnu-vijay.com',
   output: 'static',
   markdown: {
     processor: unified({

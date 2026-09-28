@@ -4,9 +4,9 @@ import { personal } from '../data/personal';
 const { publication, compact = false } = Astro.props as { publication: Publication; compact?: boolean };
 const volumeIssue = publication.volume ? `${publication.volume}${publication.issue ? `(${publication.issue})` : ''}` : '';
 const citationDetails = [volumeIssue, publication.pages && `pp. ${publication.pages}`, publication.note].filter(Boolean).join(' · ');
+const abstractParagraphs = publication.abstract?.trim().split(/\r?\n\s*\r?\n/).map(paragraph => paragraph.trim()).filter(Boolean) ?? [];
 const links = publication.category === 'Manuscripts' ? [] : [
-  { label: 'Paper', href: publication.paper || publication.pdf },
-  { label: 'DOI', href: publication.doi ? (publication.doi.startsWith('http') ? publication.doi : `https://doi.org/${publication.doi}`) : undefined },
+  { label: publication.doi ? 'DOI' : 'Paper', href: publication.doi ? (publication.doi.startsWith('http') ? publication.doi : `https://doi.org/${publication.doi}`) : (publication.paper || publication.pdf) },
   { label: 'Code', href: publication.code },
   { label: 'Video', href: publication.video },
 ].filter(link => link.href);
@@ -19,7 +19,7 @@ const links = publication.category === 'Manuscripts' ? [] : [
     <p class="publication-venue">{publication.venue}{citationDetails && ` · ${citationDetails}`}{publication.year && ` · ${publication.year}`}</p>
     {!compact && publication.description && <p class="publication-description">{publication.description}</p>}
     {links.length > 0 && <div class="publication-links">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
-    {!compact && publication.abstract && <details class="publication-abstract"><summary>Read abstract</summary><p>{publication.abstract}</p></details>}
+    {!compact && abstractParagraphs.length > 0 && <details class="publication-abstract"><summary>Read abstract</summary>{abstractParagraphs.map(paragraph => <p>{paragraph}</p>)}</details>}
     {publication.placeholder && <p class="placeholder-note">Placeholder citation — add verified details and links in publications.ts.</p>}
   </div>
 </article>

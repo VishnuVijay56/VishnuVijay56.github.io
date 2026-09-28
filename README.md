@@ -6,7 +6,7 @@ My research focuses on safe and resilient autonomous systems, combining control 
 
 **Contact:** [Email](mailto:vvijay@purdue.edu) · [Google Scholar](https://scholar.google.com/citations?user=W8rbJPwAAAAJ&hl=en) · [GitHub](https://github.com/VishnuVijay56) · [LinkedIn](https://www.linkedin.com/in/vishnuvijay56/)
 
-**Website:** [vishnuvijay56.github.io](https://vishnuvijay56.github.io/)
+**Website:** [vishnu-vijay.com](https://vishnu-vijay.com/)
 
 ## Portfolio structure
 

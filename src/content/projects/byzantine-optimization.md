@@ -1,7 +1,7 @@
 ---
 title: Byzantine-Resilient Distributed Optimization
 summary: Distributed optimization methods designed to maintain useful behavior when network participants provide faulty or adversarial information.
-order: 3
+order: 2
 tags: [Distributed Optimization, Resilience, Networked Systems]
 relatedPublications: [vijay-2025-dw-admm, vijay-2025-ms-thesis]
 ---

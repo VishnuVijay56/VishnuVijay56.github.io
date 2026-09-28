@@ -1,6 +1,6 @@
 ---
-title: Confidence-Aware Reachability for Autonomous Marine Vehicles
-summary: Forward reachability for learned marine vehicle dynamics using state-dependent uncertainty bounds from conformal prediction.
+title: Confidence-Aware Reachability for Nonlinear Learned Systems
+summary: Forward reachability for nonlinear learned system dynamics using state-dependent uncertainty bounds from conformal prediction.
 order: 3
 tags: [Reachability, Conformal Prediction, Autonomous Marine Vehicles]
 relatedPublications: [vijay-2026-confidence-aware-reachability]

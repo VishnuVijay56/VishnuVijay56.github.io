@@ -1,0 +1,56 @@
+/* Light remains the base palette in global.css. These overrides apply only in dark mode. */
+.header-actions{display:flex;align-items:center;gap:1.2rem}
+.theme-toggle{min-height:40px;min-width:3.7rem;padding:.4rem .65rem;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:.8rem;font-weight:650;cursor:pointer}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.theme-toggle:focus-visible{outline:3px solid #377d85;outline-offset:4px}
+html[data-theme="light"]{color-scheme:light}
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  color:#e4eae8;
+  background:#151d1f;
+  --ink:#e4eae8;
+  --muted:#acbab8;
+  --line:#3b4a4b;
+  --accent:#8acdc7;
+  --paper:#1d282a;
+  --soft:#253335;
+}
+html[data-theme="dark"]::selection{background:#355b5b;color:#fff}
+html[data-theme="dark"] a:focus-visible,
+html[data-theme="dark"] summary:focus-visible,
+html[data-theme="dark"] .theme-toggle:focus-visible{outline-color:#8acdc7}
+html[data-theme="dark"] .site-header{background:rgba(21,29,31,.96)}
+html[data-theme="dark"] .selected-research,
+html[data-theme="dark"] .project-card,
+html[data-theme="dark"] .mobile-menu nav,
+html[data-theme="dark"] .cv-preview object{background:var(--paper)}
+html[data-theme="dark"] .publications-preview,
+html[data-theme="dark"] .site-footer{background:#151d1f}
+html[data-theme="dark"] .contact-section{background:#203033}
+html[data-theme="dark"] .hero-bio,
+html[data-theme="dark"] .tag-list li,
+html[data-theme="dark"] .project-detail__summary,
+html[data-theme="dark"] .prose{color:#c1ccca}
+html[data-theme="dark"] .portrait img,
+html[data-theme="dark"] .project-card__media,
+html[data-theme="dark"] .project-detail__hero img,
+html[data-theme="dark"] .project-detail__hero video,
+html[data-theme="dark"] .project-detail__hero iframe,
+html[data-theme="dark"] .project-media__video-preview,
+html[data-theme="dark"] .video-entry__embed{background:#253335}
+html[data-theme="dark"] .button-primary,
+html[data-theme="dark"] .button-primary:hover,
+html[data-theme="dark"] .skip-link{color:#152022}
+html[data-theme="dark"] .placeholder-note{color:#a5b3b1!important}
+html[data-theme="dark"] .footer-links span{color:var(--muted)}
+html[data-theme="dark"] .mobile-menu nav{box-shadow:0 12px 25px rgba(0,0,0,.25)}
+
+@media(max-width:800px) and (min-width:601px){
+  .header-inner{gap:1rem}
+  .desktop-nav{gap:1.4rem}
+}
+@media(max-width:600px){
+  .header-actions{gap:.7rem}
+  .theme-toggle{min-width:3.3rem;padding:.35rem .5rem}
+}
